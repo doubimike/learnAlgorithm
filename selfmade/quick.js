@@ -1,4 +1,8 @@
 function quick (array,pivotIndex,baseIndex) {
+	if (baseIndex-pivotIndex==0) {
+		return array;
+	};
+
 	var length = array.length;
 	// 选择一个基准值做比较对象，进行分支
 	var pivotIndex = pivotIndex;
@@ -8,6 +12,7 @@ function quick (array,pivotIndex,baseIndex) {
 	// 剩下的未排序的分别与基准值进行比较,i表示次数，所以为了理解的方便，直接从1开始，它并不涉及到数组下标
 
 	for(var i = pivotIndex+1;i<=length;i++){
+
 		if (array[i]<array[pivotIndex])
 		{
 			// 还需要处理更加一般的情况
@@ -23,7 +28,7 @@ function quick (array,pivotIndex,baseIndex) {
 	// 分组的
 
 	quick(array,0,baseIndex-2)
-	quick(array[baseIndex,length-1])
+	quick(array,baseIndex,length-1)
 	
 	function swap (array,baseIndex,swapIndex) {
 		var temp = 	array[baseIndex];
@@ -33,7 +38,7 @@ function quick (array,pivotIndex,baseIndex) {
 	}
 }
 
-quick([4,5,1,3,2])
+quick([4,5,1,3,2],0,1)
 
 
 // 思路
