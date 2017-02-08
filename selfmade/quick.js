@@ -53,8 +53,10 @@
 
 // 实在弄不出来啊，先抄一遍
 
-var quickSort = function(arr) {
-    if (arr.length <= 1) return arr;
+var quickSort = function (arr) {
+    if (arr.length <= 1) {
+        return arr;
+    }
     var pivotIndex = 0;
     var pivot = arr.splice(0, 1)[0];
     var left = [];
@@ -71,4 +73,57 @@ var quickSort = function(arr) {
 
 
 
-console.log(quickSort([2, 1, 3, 4, 6, 3, 2]))
+// console.log(quickSort([2, 1, 3, 4, 6, 3, 2]))
+// 上面的算法还可以更加优化
+
+function QuickSort(arr, func) {
+    if (!arr || !arr.length) return [];
+    if (arr.length === 1) return arr;
+    var pivot = arr[0];
+    var smallSet = [];
+    var bigSet = [];
+    for (var i = 1; i < arr.length; i++) {
+        if (func(arr[i], pivot) < 0) {
+            smallSet.push(arr[i]);
+        } else {
+            bigSet.push(arr[i]);
+        }
+    }
+    console.log('smallSet', smallSet)
+    console.log('bigSet', bigSet)
+    return QuickSort(smallSet, func).concat([pivot], QuickSort(bigSet, func));
+}
+
+console.log(QuickSort([2, 1, 3, 4, 6, 3, 2], function (a, b) {
+    return a - b;
+}));
+
+
+// 来一个带原地排序的快速排序
+function swap(arr, from, to) {
+    if (from == to) return;
+    var temp = arr[from];
+    arr[from] = arr[to];
+    arr[to] = temp;
+}
+
+
+function QuickSortWithPartition(arr, func, from, to) {
+    if (!arr || !arr.length) return [];
+    if (arr.length === 1) return arr;
+    from = from === void 0 ? 0 : from;
+    to = to === void 0 ? 0 : to;
+    var pivot = arr[from];
+    var smallIndex = from;
+    var bigIndex = from + 1;
+    for (; bigIndex <= to; bigIndex++) {
+        if (func(arr[bigIndex], pivot) < 0) {
+            smallIndex++;
+            swap(arr, smallIndex, bigIndex);
+        }
+    }
+    swap(arr, smallIndex, from);
+    QuickSortWithPartition(arr, func, from, smallIndex - 1);
+    QuickSortWithPartition(arr, func, smallIndex + 1, to);
+    return arr;
+}
