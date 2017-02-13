@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 (function (argument) {
     var x = '',
         i = 0;
@@ -11,3 +12,23 @@
         console.log(x);
     }
 })();
+=======
+// var str = 'abc';
+// console.log(str.indexOf(''))
+// console.log(str.indexOf('', -100))
+// console.log(str.indexOf('', 100))
+// console.log(str.indexOf('', 2))
+
+
+var str = 'eo be, or not to be, that is the question.';
+var count = 0;
+var pos = str.lastIndexOf('e', -1);
+console.log(pos)
+    // while (pos !== -1) {
+    //     count++;
+    //     // pos = str.lastIndexOf('e', pos - 1);
+    //     console.log(pos)
+    // }
+
+console.log(count)
+>>>>>>> Stashed changes
