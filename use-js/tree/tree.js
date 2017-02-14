@@ -13,6 +13,10 @@ function BST() {
     this.root = null;
     this.insert = insert;
     this.inOrder = inOrder;
+    this.getMin = getMin;
+    this.getMin = getMin;
+    this.getMax = getMax;
+    this.find = find;
 }
 
 function insert(data) {
@@ -55,12 +59,62 @@ function preOrder(node) {
     if (!(node == null)) {
         console.log('---node is not null')
         console.log('---node show' + node.show() + ' ');
-        inOrder(node.left);
+        preOrder(node.left);
 
-        inOrder(node.right);
+        preOrder(node.right);
     }
 }
 
+function postOrder(node) {
+    if (!(node == null)) {
+        postOrder(node.left);
+        postOrder(node.right);
+        console.log('---node show' + node.show() + ' ');
+    }
+}
+
+function getMin() {
+    var current = this.root;
+    while (!(current.left == null)) {
+        current = current.left;
+    }
+    return current.data;
+}
+
+function getMax() {
+    var current = this.root;
+    while (!(current.right == null)) {
+        current = current.right;
+    }
+    return current.data;
+}
+
+function find(data) {
+    var current = this.root;
+    while (current !== null) {
+        if (current.data = data) {
+            return current;
+        } else if (data < current.data) {
+            current = current.left;
+        } else {
+            current = current.right;
+        }
+    }
+    return null;
+}
+
+function remove(data) {
+    removeNode(this.root, data);
+}
+
+function removeNode(node, data) {
+    if (node == null) {
+        return null;
+    }
+    if (data == node.data) {
+
+    }
+}
 var nums = new BST();
 nums.insert(23);
 nums.insert(45);
@@ -71,4 +125,8 @@ nums.insert(99);
 nums.insert(22);
 console.log(nums)
     // console.log("Inorder traversal: ");
-preOrder(nums.root);
+    // preOrder(nums.root);
+min = nums.getMin();
+console.log(min)
+max = nums.getMax();
+console.log(nums.find(22))
