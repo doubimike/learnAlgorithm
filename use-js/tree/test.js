@@ -1,7 +1,22 @@
-var hello = 'hello';
-var world = 'nodejs';
+function cal(n) {
+    var result = 0;
+    for (var i = 1; i <= n; i++) {
+        result += i;
+    }
+    console.log(result)
+    return result;
+}
 
-debugger;
+cal(4)
 
-var hello_world = hello + ' ' + world;
-console.log(hello_world);
+function dcal(n) {
+    if (n == 1) {
+        return 1;
+    }
+    if (n == 0) {
+        return 0;
+    }
+    return n + dcal(n - 1);
+}
+
+console.log(dcal(4))

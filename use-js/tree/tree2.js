@@ -3,6 +3,7 @@ function Node(data, left, right) {
     this.left = left;
     this.right = right;
     this.show = show;
+    this.count = 1;
 }
 
 function show() {
@@ -20,6 +21,13 @@ function BST() {
     this.find = find;
     this.remove = remove;
     this.findFather = findFather;
+    this.update = update;
+}
+
+function update(data) {
+    var grade = this.find(data);
+    grade.count++;
+    return grade;
 }
 
 function find(data) {
@@ -291,14 +299,42 @@ function removeNode(node, data) {
     }
 }
 
-
-
 var nums = new BST();
-nums.insert(23);
-nums.insert(45);
-nums.insert(16);
-nums.insert(37);
-nums.insert(3);
-nums.insert(99);
-nums.insert(22);
-console.log(nums.remove(45))
+nums.insert(20)
+nums.insert(30)
+nums.insert(40)
+nums.update(20)
+console.log(nums)
+
+
+function getArray(length) {
+    var arr = [];
+    for (var i = 0; i < length; i++) {
+        arr[i] = Math.floor(Math.random() * 101)
+    }
+    return arr;
+}
+
+function printArr(arr) {
+    console.log(arr[0].toString() + ' ');
+    for (var i = 1; i < arr.length; i++) {
+        console.log(arr[i].toString() + ' ');
+        if (i % 10 == 0) {
+            console.log('\n');
+        }
+    }
+}
+
+var grades = getArray(100);
+var gradedistro = new BST();
+for (var i = 0; i < grades.length; i++) {
+    var g = grades[i];
+    var grade = gradedistro.find(g);
+    if (grade == null) {
+        gradedistro.insert(g);
+    } else {
+        gradedistro.update(g);
+    }
+}
+
+console.log()
