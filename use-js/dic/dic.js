@@ -35,12 +35,7 @@ function remove(key) {
     delete this.datastore[key];
 }
 
-function showAll() {
-    var arr = Object.keys(this.datastore).sort();
-    for (var key in arr) {
-        console.log(arr[key] + " -> " + this.datastore[arr[key]]);
-    }
-}
+hashtable
 var pbook = new Dictionary();
 pbook.add('mike2', '1232')
 pbook.add('mike', '123')

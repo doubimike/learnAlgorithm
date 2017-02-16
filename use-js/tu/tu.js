@@ -7,6 +7,7 @@ function Graph(v) {
     this.vertices = v;
     this.edges = 0;
     this.adj = [];
+    this.edgeTo = [];
     for (var i = 0; i < this.vertices; i++) {
         this.adj[i] = [];
         // this.adj[i].push('');
@@ -15,10 +16,13 @@ function Graph(v) {
     this.toString = toString;
     this.showGraph = showGraph;
     this.dfs = dfs;
+    this.bfs = bfs;
     this.marked = [];
     for (var i = 0; i < this.vertices; i++) {
         this.marked[i] = false;
     }
+    this.pathTo = pathTo;
+    this.hasPathTo = hasPathTo;
 }
 
 
@@ -54,9 +58,61 @@ function dfs(v) {
     }
 }
 
+function bfs(s) {
+    var queue = [];
+    var _this = this;
+    this.marked[s] = true;
+    queue.push(s);
+    while (queue.length > 0) {
+        var v = queue.shift();
+        if (v !== undefined) {
+            process.stdout.write('---Vistited vertex: ' + v + '\n');
+        }
+        this.adj[v].forEach(function (item) {
+            if (!_this.marked[item]) {
+                _this.marked[item] = true;
+                _this.edgeTo[item] = v;
+                queue.push(item);
+            }
+        });
+    }
+}
+
+function pathTo(v) {
+    var source = 0;
+    console.log('1', v)
+    console.log('1', this.hasPathTo(v))
+    console.log('1', this.marked)
+    console.log('1', this.edgeTo)
+
+    if (!this.hasPathTo(v)) {
+        return undefined;
+    }
+
+    var path = [];
+    for (var i = v; i != source; i + this.edgeTo[i]) {
+        path.push(i);
+    }
+    path.push(s);
+    return path;
+
+
+}
+
+function hasPathTo(v) {
+    return this.marked[v];
+}
 g = new Graph(5);
 g.addEdge(0, 1);
 g.addEdge(0, 2);
 g.addEdge(1, 3);
 g.addEdge(2, 4);
-g.dfs(0);
+var vertex = 4;
+var paths = g.pathTo(4);
+// while (paths.length > 0) {
+//     if (paths.length > 1) {
+//         process.stdout.write(paths.pop() + '-');
+//     } else {
+//         process.stdout.write(paths.pop());
+//     }
+// }
