@@ -62,19 +62,43 @@ function LinkedList() {
 
     }
     this.remove = function(element) {
-
-    }
-    this.indexOf = function(element) {
-
+        var index = this.indexOf(element);
+        return this.removeAt(index);
     }
     this.isEmpty = function() {
-
+        return length === 0;
     }
     this.size = function() {
+        return length;
+    }
+    this.toString = function() {
+        var current = head,
+            string = '';
+        while (current) {
+            string += ',' + current.element;
+            current = current.next;
+        }
 
+        return string.slice(1);
+    }
+
+    this.indexOf = function(element) {
+        var current = head,
+            index = -1;
+        while (current) {
+            if (element === current.element) {
+                return index;
+            }
+            index++;
+            current = current.next;
+        }
+        return -1;
     }
 }
 
 var list = new LinkedList();
 list.append(15);
 list.append(10);
+
+console.log(list.toString())
+console.log(list.indexOf(10))
