@@ -1,7 +1,7 @@
 function changeStuff(num, obj1, obj2) {
     num *= 10;
     obj1.item = 'changeed';
-    obj2 = { item: 'uncha' };
+    obj2 = { item: 'cha' };
 }
 
 var num = 10;
@@ -15,6 +15,6 @@ var obj2 = {
 
 changeStuff(num, obj1, obj2);
 
-console.log(num)
-console.log(obj1)
-console.log(obj2)
+console.log(num) //10
+console.log(obj1) //changed
+console.log(obj2) //uncha
